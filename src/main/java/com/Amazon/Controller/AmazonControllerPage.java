@@ -19,9 +19,7 @@ public class AmazonControllerPage {
 	
 	@PostConstruct
 	public void init(){
-		System.out.println("Entered Post Construct");
 		userService.insertUser();
-		System.out.println("End Post Construct");
 	}
 	
 	@RequestMapping(path="/hello")
