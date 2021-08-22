@@ -27,7 +27,7 @@ public class AmazonControllerPage {
 	@RequestMapping(path="/hello")
 	public Integer avalue(){
 		System.out.println("Entered Hello");
-		return 300;
+		return 500;
 	}
 	
 }
