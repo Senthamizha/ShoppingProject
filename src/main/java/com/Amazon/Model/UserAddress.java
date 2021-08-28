@@ -8,17 +8,23 @@ import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.springframework.stereotype.Component;
+
+import com.Amazon.Repository.CommonRepo;
+
+@Component
 @Entity
 @Table(name="user_address")
-public class UserAddress {
+public class UserAddress{
 
+	@Column(name="phone_number")
+	private Long phone_number;
 	@Id
     @Column
 	private String userName;
 	
 	@Column(name="door_no")
 	private Integer doorNo;
-	
 	@Column(name="street")
 	private String street;
 	
@@ -31,21 +37,6 @@ public class UserAddress {
 	@Column(name="pincode")
 	private Integer pincode;
 	
-	@Column(name="phone_number")
-	private Long phone_number;
-	
-	@OneToOne
-	@JoinColumn(name="userName")
-	@MapsId
-	private UserDetails userDetails;
-	
-	
-	public UserDetails getUserDetails() {
-		return userDetails;
-	}
-	public void setUserDetails(UserDetails userDetails) {
-		this.userDetails = userDetails;
-	}
 	public String getUserName() {
 		return userName;
 	}

@@ -1,14 +1,22 @@
 package com.Amazon.Model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+import org.springframework.stereotype.Component;
+
+@Component
 @Entity
 @Table(name="User_details")
-public class UserDetails {
+public class UserDetails extends CommonResponse{
 
 	@Id
 	@Column(nullable = false)
@@ -17,7 +25,9 @@ public class UserDetails {
 	@Column(name="password")	
 	private String password;
 	
-	@OneToOne(mappedBy = "userDetails")
+	@OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name="userName")
+    @Fetch(FetchMode.JOIN)
 	private UserAddress address;
 	
 	public String getUserName() {
