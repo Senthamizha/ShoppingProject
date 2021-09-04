@@ -7,7 +7,6 @@ import javax.annotation.PostConstruct;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,10 +15,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.Amazon.Model.CartItem;
 import com.Amazon.Model.CategoryResponse;
 import com.Amazon.Model.CommonResponse;
 import com.Amazon.Model.ItemResponse;
+import com.Amazon.Model.UserAddress;
 import com.Amazon.Model.UserDetails;
 import com.Amazon.Service.CartService;
 import com.Amazon.Service.CategoryService;
@@ -91,4 +90,19 @@ public class AmazonControllerPage {
 	 		logger.info("Controller: Entered getCartItem()");
 	        return cartService.getAllCartItem(name);
 	    }
+	 	
+	 	@PostMapping("/signUp")
+	    public CommonResponse userSignup(@RequestBody UserDetails userDAO) {
+	 		logger.info("Controller: Entered userSignup()");
+	 		UserAddress address = userDAO.getAddress();
+	 		return userService.signUpUserDetails(userDAO,address);
+	    }
+	 	
+	 	@GetMapping("/getItemsCount")
+	 	public CommonResponse itemsCount(@RequestParam(name = "userName") String name) {
+	 		logger.info("Controller: Entered itemsCount()");
+	 		return cartService.getItemsCount(name);
+	 	}
+	 	
 }
+

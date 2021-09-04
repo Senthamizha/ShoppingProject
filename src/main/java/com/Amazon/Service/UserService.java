@@ -5,9 +5,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.Amazon.Model.CategoryResponse;
 import com.Amazon.Model.CommonResponse;
-import com.Amazon.Model.ItemResponse;
+import com.Amazon.Model.UserAddress;
 import com.Amazon.Model.UserDetails;
 import com.Amazon.Repository.UserRepository;
 
@@ -25,4 +24,8 @@ public class UserService {
 				logger.info("Service:UserService: Entered loginUser()");
                 return userRepo.getUserAddress(userObject);
     }
+	public CommonResponse signUpUserDetails(UserDetails user,UserAddress address) {
+		logger.info("Service:UserService: Entered signUpUserDetails()");
+				return userRepo.signUpUser(user,address);
+	}
 }

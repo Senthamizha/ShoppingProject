@@ -1,6 +1,5 @@
 package com.Amazon.Repository;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Query;
@@ -13,12 +12,9 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Repository;
 
 import com.Amazon.Model.CartItem;
-import com.Amazon.Model.CategoryList;
-import com.Amazon.Model.CategoryResponse;
 import com.Amazon.Model.CommonResponse;
 import com.Amazon.Model.ItemList;
 import com.Amazon.Model.ItemResponse;
-import com.Amazon.Service.CategoryService;
 
 @Repository
 @Transactional
@@ -88,7 +84,7 @@ public class CartRepository extends CommonRepo{
             Query query = session.createQuery("select item from ItemList item,CartItem cart where item.itemId=cart.itemId and cart.userName=:userName").setParameter("userName",userName);
             List<ItemList> myItemList = query.getResultList();
             response.setItemList(myItemList);
-            logger.info("Repository:CartRepository: getAddedItem() retrieved sussfully");
+            logger.info("Repository:CartRepository: getAddedItem() retrieved successfully");
             setSuccess(response);
         } catch (Exception exception) {
        	 logger.error("Repository:CartRepository: Exception in getAddedItem()");
@@ -98,5 +94,21 @@ public class CartRepository extends CommonRepo{
         return response;
 	}
 	
+	public CommonResponse itemsCount(String userName) {
+		logger.info("Repository:CartRepository: Entered itemsCount()");
+		CommonResponse response = new CommonResponse();
+		try {
+			Session session = getSession();
+            int result= (int)((long)session.createQuery("select count(p) from CartItem p where p.userName = :userName")
+                    .setParameter("userName", userName).uniqueResult());
+            logger.info("Repository:CartRepository: getAddedItem() Total Items Count= "+result);
+            logger.info("Repository:CartRepository: getAddedItem() retrieved successfully");
+            setSuccess(response);
+		} catch (Exception exception) {
+	       	 logger.error("Repository:CartRepository: Exception in itemsCount()");
+	            setFailure(response, exception);
+	        }
+		return response;
+	}
 	
 }

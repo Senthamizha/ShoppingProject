@@ -17,8 +17,8 @@ import com.Amazon.Repository.CommonRepo;
 @Table(name="user_address")
 public class UserAddress{
 
-	@Column(name="phone_number")
-	private Long phone_number;
+	//@Column(name="phone_number")
+	private Long phoneNumber;
 	@Id
     @Column
 	private String userName;
@@ -73,14 +73,14 @@ public class UserAddress{
 	public void setPincode(Integer pincode) {
 		this.pincode = pincode;
 	}
-	public Long getPhone_number() {
-		return phone_number;
+	public Long getPhoneNumber() {
+		return phoneNumber;
 	}
-	public void setPhone_number(Long phone_number) {
-		this.phone_number = phone_number;
+	public void setPhoneNumber(Long phoneNumber) {
+		this.phoneNumber = phoneNumber;
 	}
 	public UserAddress(String userName, Integer doorNo, String street, String city, String state, Integer pincode,
-			Long phone_number) {
+			Long phoneNumber) {
 		super();
 		this.userName = userName;
 		this.doorNo = doorNo;
@@ -88,18 +88,18 @@ public class UserAddress{
 		this.city = city;
 		this.state = state;
 		this.pincode = pincode;
-		this.phone_number = phone_number;
+		this.phoneNumber = phoneNumber;
 	}
 	
 	public UserAddress(Integer doorNo, String street, String city, String state, Integer pincode,
-			Long phone_number) {
+			Long phoneNumber) {
 		super();
 		this.doorNo = doorNo;
 		this.street = street;
 		this.city = city;
 		this.state = state;
 		this.pincode = pincode;
-		this.phone_number = phone_number;
+		this.phoneNumber = phoneNumber;
 	}
 	public UserAddress() {
 		super();
