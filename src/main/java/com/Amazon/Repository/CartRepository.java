@@ -101,7 +101,7 @@ public class CartRepository extends CommonRepo{
 			Session session = getSession();
             int result= (int)((long)session.createQuery("select count(p) from CartItem p where p.userName = :userName")
                     .setParameter("userName", userName).uniqueResult());
-            logger.info("Repository:CartRepository: getAddedItem() Total Items Count= "+result);
+            logger.info("Repository:CartRepository: getAddedItem() Total No.of Items Count= "+result);
             logger.info("Repository:CartRepository: getAddedItem() retrieved successfully");
             setSuccess(response);
 		} catch (Exception exception) {
